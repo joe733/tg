@@ -44,10 +44,7 @@ class MsgProxy:
             log.error("msg type not supported: %s", _type)
             return {}
         for field in fields[:deep]:
-            if isinstance(field, int):
-                doc = doc[field]
-            else:
-                doc = doc.get(field)
+            doc = doc[field] if isinstance(field, int) else doc.get(field)
             if doc is None:
                 return {}
         return doc

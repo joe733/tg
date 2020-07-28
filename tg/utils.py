@@ -225,7 +225,7 @@ class suspend:
 
     def open_file(self, file_path: str, cmd: str = None) -> None:
         if cmd:
-            cmd = cmd % shlex.quote(file_path)
+            cmd %= shlex.quote(file_path)
         else:
             cmd = get_file_handler(file_path)
 

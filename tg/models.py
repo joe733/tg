@@ -324,7 +324,7 @@ class Model:
             user_type = UserType[user["type"]["@type"]].value
         except KeyError:
             pass
-        info = {
+        return {
             name: status,
             "Username": user.get("username", ""),
             "Bio": user_info.get("bio", ""),
@@ -332,7 +332,6 @@ class Model:
             "User Id": user_id,
             "Type": user_type,
         }
-        return info
 
 
 class ChatModel:
@@ -565,7 +564,7 @@ class MsgModel:
         # tdlib could doesn't guarantee number of messages, so we need to
         # send another request on demand
         # see https://github.com/tdlib/td/issues/168
-        for i in range(3):
+        for _ in range(3):
             if len(messages) >= limit + offset:
                 break
             result = self.tg.get_chat_history(

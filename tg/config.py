@@ -2,6 +2,7 @@
 Every parameter (except for CONFIG_FILE) can be
 overwritten by external config file
 """
+
 import os
 import platform
 import runpy
@@ -52,12 +53,10 @@ EDITOR = os.environ.get("EDITOR", "vi")
 
 if _os_name == _linux:
     DEFAULT_OPEN = "xdg-open {file_path}"
+    COPY_CMD = "xclip -selection c"
 else:
     DEFAULT_OPEN = "open {file_path}"
 
-if _os_name == _linux:
-    COPY_CMD = "xclip -selection c"
-else:
     COPY_CMD = "pbcopy"
 
 CHAT_FLAGS: Dict[str, str] = {}

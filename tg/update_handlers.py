@@ -81,11 +81,11 @@ def update_new_message(controller: Controller, update: Dict[str, Any]) -> None:
 
 @update_handler("updateChatOrder")
 def update_chat_order(controller: Controller, update: Dict[str, Any]) -> None:
-    current_chat_id = controller.model.current_chat_id
     chat_id = update["chat_id"]
     order = update["order"]
 
     if controller.model.chats.update_chat(chat_id, order=order):
+        current_chat_id = controller.model.current_chat_id
         controller.refresh_current_chat(current_chat_id)
 
 
@@ -94,8 +94,8 @@ def update_chat_title(controller: Controller, update: Dict[str, Any]) -> None:
     chat_id = update["chat_id"]
     title = update["title"]
 
-    current_chat_id = controller.model.current_chat_id
     if controller.model.chats.update_chat(chat_id, title=title):
+        current_chat_id = controller.model.current_chat_id
         controller.refresh_current_chat(current_chat_id)
 
 
@@ -106,10 +106,10 @@ def update_chat_is_marked_as_unread(
     chat_id = update["chat_id"]
     is_marked_as_unread = update["is_marked_as_unread"]
 
-    current_chat_id = controller.model.current_chat_id
     if controller.model.chats.update_chat(
         chat_id, is_marked_as_unread=is_marked_as_unread
     ):
+        current_chat_id = controller.model.current_chat_id
         controller.refresh_current_chat(current_chat_id)
 
 
@@ -127,10 +127,10 @@ def update_chat_is_pinned(
     is_pinned = update["is_pinned"]
     order = update["order"]
 
-    current_chat_id = controller.model.current_chat_id
     if controller.model.chats.update_chat(
         chat_id, is_pinned=is_pinned, order=order
     ):
+        current_chat_id = controller.model.current_chat_id
         controller.refresh_current_chat(current_chat_id)
 
 
@@ -141,10 +141,10 @@ def update_chat_read_outbox(
     chat_id = update["chat_id"]
     last_read_outbox_message_id = update["last_read_outbox_message_id"]
 
-    current_chat_id = controller.model.current_chat_id
     if controller.model.chats.update_chat(
         chat_id, last_read_outbox_message_id=last_read_outbox_message_id
     ):
+        current_chat_id = controller.model.current_chat_id
         controller.refresh_current_chat(current_chat_id)
 
 
@@ -156,12 +156,12 @@ def update_chat_read_inbox(
     last_read_inbox_message_id = update["last_read_inbox_message_id"]
     unread_count = update["unread_count"]
 
-    current_chat_id = controller.model.current_chat_id
     if controller.model.chats.update_chat(
         chat_id,
         last_read_inbox_message_id=last_read_inbox_message_id,
         unread_count=unread_count,
     ):
+        current_chat_id = controller.model.current_chat_id
         controller.refresh_current_chat(current_chat_id)
 
 
@@ -174,8 +174,8 @@ def update_chat_draft_message(
     # draft_message = update["draft_message"]
     order = update["order"]
 
-    current_chat_id = controller.model.current_chat_id
     if controller.model.chats.update_chat(chat_id, order=order):
+        current_chat_id = controller.model.current_chat_id
         controller.refresh_current_chat(current_chat_id)
 
 
@@ -191,10 +191,10 @@ def update_chat_last_message(
         return
     order = update["order"]
 
-    current_chat_id = controller.model.current_chat_id
     if controller.model.chats.update_chat(
         chat_id, last_message=last_message, order=order
     ):
+        current_chat_id = controller.model.current_chat_id
         controller.refresh_current_chat(current_chat_id)
 
 
